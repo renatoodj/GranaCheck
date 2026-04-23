@@ -1,55 +1,193 @@
-# GranaCheck - Agente Financeiro Inteligente
+# 💰 GranaCheck - Agente Financeiro Inteligente
 
-## Descrição
+---
 
-O GranaCheck é um agente simples criado para ajudar pessoas a controlarem seus gastos mensais.
+## 📌 Descrição do Projeto
 
-O foco do agente é identificar quando o usuário está próximo do limite de gastos ou quando já ultrapassou o valor definido.
+O GranaCheck é um agente inteligente simples desenvolvido para ajudar usuários a controlar seus gastos mensais de forma prática, rápida e objetiva.
 
-## Problema Resolvido
+O agente analisa os valores informados pelo usuário e gera alertas financeiros, auxiliando na tomada de decisões e evitando o descontrole financeiro.
 
-Muitas pessoas têm dificuldade em acompanhar seus gastos durante o mês.  
-Isso pode causar descontrole financeiro, compras desnecessárias e falta de planejamento.
+---
 
-O GranaCheck resolve esse problema oferecendo alertas simples e diretos.
+## 🎯 Problema Resolvido
 
-## Personalidade do Agente
+Muitas pessoas não conseguem acompanhar seus gastos durante o mês, o que pode levar a:
 
-O agente possui uma comunicação:
+- Excesso de despesas
+- Falta de planejamento financeiro
+- Uso descontrolado do orçamento
+
+O GranaCheck resolve esse problema oferecendo um monitoramento simples baseado em regras.
+
+---
+
+## 🧠 Etapa 1 - Documentação do Agente
+
+### 🏷️ Nome do Agente
+**GranaCheck**
+
+### 🎯 Objetivo
+Auxiliar o usuário a controlar seus gastos mensais e evitar ultrapassar o limite financeiro definido.
+
+---
+
+## 🎭 Personalidade do Agente
+
+O agente possui um comportamento:
 
 - Informal
-- Direta
-- Simples
-- Sem termos técnicos
-- Focada em ajudar o usuário a tomar decisões rápidas
+- Direto
+- Objetivo
+- Sem linguagem técnica
+- Amigável, mas com alertas claros
 
-Exemplo de resposta:
+### 🗣️ Exemplos de respostas:
 
-> Você passou do limite! Bora segurar os gastos esse mês.
+- "⚠️ Você passou do limite! Bora segurar os gastos."
+- "👀 Atenção! Você já está perto do limite."
+- "✅ Tudo sob controle, continue assim!"
 
-## O que o agente pode fazer
+---
 
-- Receber o limite mensal informado pelo usuário
-- Receber o gasto atual
-- Comparar os valores
-- Gerar alertas financeiros
-- Exibir um resumo simples dos dados
+## 🚫 Limitações do Agente
 
-## O que o agente não faz
-
-- Não acessa conta bancária real
+- Não acessa contas bancárias reais
 - Não realiza investimentos
 - Não substitui um consultor financeiro
 - Não toma decisões pelo usuário
-- Não fornece aconselhamento financeiro profissional
+- Trabalha apenas com dados informados manualmente
 
-## Arquitetura Simples
+---
 
-```text
+## 📚 Etapa 2 - Base de Conhecimento
+
+O agente utiliza regras simples baseadas na comparação entre gasto e limite mensal.
+
+### 📌 Regras do Agente
+
+- Se o gasto for maior que o limite:
+  → Emitir alerta de excesso de gastos
+
+- Se o gasto for maior ou igual a 80% do limite:
+  → Avisar que está próximo do limite
+
+- Se o gasto for menor que 80% do limite:
+  → Informar que está sob controle
+
+---
+
+## 💬 Etapa 3 - Prompts do Agente
+
+### Prompt base utilizado:
+
+O agente foi projetado para responder de forma:
+
+- Curta
+- Clara
+- Direta
+- Sem termos técnicos
+
+### Comportamento esperado:
+
+- Gerar alertas financeiros
+- Orientar o usuário de forma simples
+- Evitar respostas longas
+
+---
+
+## ⚙️ Etapa 4 - Aplicação Funcional
+
+### 🔁 Arquitetura do Sistema
+
 Usuário informa limite e gasto
-        ↓
+↓
 Sistema processa os dados
-        ↓
-Agente compara gasto com limite
-        ↓
-Agente retorna alerta ou confirmação
+↓
+Agente compara valores
+↓
+Agente retorna resposta
+
+
+---
+
+## 💻 Código do Projeto
+
+```python
+import pandas as pd
+
+def analisar_gasto(gasto_total, limite_mensal):
+    percentual = (gasto_total / limite_mensal) * 100
+
+    if gasto_total > limite_mensal:
+        return "⚠️ Você passou do limite! Bora segurar os gastos esse mês."
+    
+    elif percentual >= 80:
+        return "👀 Atenção! Você já está perto do limite mensal."
+    
+    else:
+        return "✅ Tudo sob controle. Continue assim!"
+
+def main():
+    print("=== GranaCheck ===")
+    print("Seu agente simples de controle de gastos\n")
+
+    limite = float(input("Informe seu limite mensal: R$ "))
+    gasto = float(input("Informe quanto você já gastou: R$ "))
+
+    resposta = analisar_gasto(gasto, limite)
+
+    dados = {
+        "Limite Mensal": [limite],
+        "Gasto Atual": [gasto],
+        "Saldo Restante": [limite - gasto],
+        "Status": [resposta]
+    }
+
+    df = pd.DataFrame(dados)
+
+    print("\nResumo financeiro:")
+    print(df)
+
+    print("\nResposta do agente:")
+    print(resposta)
+
+if __name__ == "__main__":
+   main()
+
+
+```
+
+## 📊 Etapa 5 - Avaliação e Métricas
+
+O agente pode ser avaliado com base em:
+
+- Clareza das respostas
+- Correção dos alertas
+- Facilidade de uso
+- Objetividade na comunicação
+
+
+## 🧪 Testes Realizados
+
+### ✔️ Cenário 1:
+- Limite: 2000
+- Gasto: 2500  
+→ Resultado: Alerta de excesso
+
+### ✔️ Cenário 2:
+- Limite: 2000
+- Gasto: 1700  
+→ Resultado: Aviso de proximidade
+
+### ✔️ Cenário 3:
+- Limite: 2000
+- Gasto: 1000  
+→ Resultado: Situação controlada
+
+
+## 🚀 Etapa 6 - Pitch do Projeto
+
+O GranaCheck é um agente financeiro simples e direto, desenvolvido para ajudar usuários a controlar seus gastos mensais.
+
+Através da análise de valores informados, o agente gera alertas inteligentes que auxiliam na tomada de decisão, promovendo maior controle financeiro de forma acessível e prática.

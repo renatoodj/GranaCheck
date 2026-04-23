@@ -191,3 +191,8 @@ O agente pode ser avaliado com base em:
 O GranaCheck é um agente financeiro simples e direto, desenvolvido para ajudar usuários a controlar seus gastos mensais.
 
 Através da análise de valores informados, o agente gera alertas inteligentes que auxiliam na tomada de decisão, promovendo maior controle financeiro de forma acessível e prática.
+
+
+## 👨‍💻 Autor
+
+Renato Oliveira de Jesus
